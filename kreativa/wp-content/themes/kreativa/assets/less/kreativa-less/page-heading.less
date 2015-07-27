@@ -1,0 +1,74 @@
+.page-heading {
+	background-size: cover;
+	background-repeat: no-repeat;
+	.page-title {
+		position: relative;
+		text-align: center;
+		h1 {
+			font-size: 60px;
+			font-weight: 700;
+			text-transform: uppercase;
+			color: @white;
+			font-family: @third-font;
+			letter-spacing: 2px;
+		}
+		.line-dec {
+			margin: 30px 0px;
+			width: 90px;
+			height: 1px;
+			background-color: @white;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		span {
+			font-size: 24px;
+			font-weight: 300;
+			color: @white;
+			line-height: 36px!important;
+			font-family: @secondary-font;
+		}
+	}
+}
+
+
+
+.owl-theme .owl-controls .owl-page > span {
+	width: 34px!important;
+	height: 4px!important;
+	border-radius: 0%!important;
+	border: none !important;
+	background: lighten(@heading, 30%) !important;
+	margin-top: 70px!important;
+}
+
+.page-heading-owl {
+	background: @bg-light;
+	padding: 80px 0px 50px 0px!important;
+
+	.owl-page.active {
+		span {
+			background: lighten(@heading, 25%) !important;
+		}
+	}
+	.border-button {
+		margin-top: 40px;
+	}
+}
+
+.heading-content {
+	text-align: center;
+	padding: 0px;
+	h4 {
+		font-family: @secondary-font;
+		color: @heading;
+		font-size: 30px;
+		font-weight: 300;
+		padding-bottom: 15px;
+	}
+	span {
+		font-family: @third-font;
+		font-size: 14px;
+		text-transform: uppercase;
+		color: #b9b9b9;
+	}
+}

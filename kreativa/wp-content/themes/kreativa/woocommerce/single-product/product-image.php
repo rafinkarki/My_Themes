@@ -1,0 +1,68 @@
+<?php
+/**
+ * Single Product Image
+ *
+ * @author 		WooThemes
+ * @package 	WooCommerce/Templates
+ * @version     2.0.14
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
+global $post, $woocommerce, $product;
+
+?>
+<div class="col-md-6 col-sm-6 col-xs-12 images ">
+ 	<div class="shop-module clearfix">
+		<div class="divimage text-center">
+			<div class="hovereffect">							
+										
+				<?php
+					if ( has_post_thumbnail() ) {
+
+						$image_title 	= esc_attr( get_the_title( get_post_thumbnail_id() ) );
+						$image_caption 	= get_post( get_post_thumbnail_id() )->post_excerpt;
+						$image_link  	= wp_get_attachment_url( get_post_thumbnail_id() );
+						$image       	= get_the_post_thumbnail( $post->ID, apply_filters( 'single_product_large_thumbnail_size', 'shop_single' ), array(
+							'title'	=> $image_title,
+							'alt'	=> $image_title
+							) );
+
+						$attachment_count = count( $product->get_gallery_attachment_ids() );
+
+						if ( $attachment_count > 0 ) {
+							$gallery = '[product-gallery]';
+						} else {
+							$gallery = '';
+						}
+
+						echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<a href="%s" itemprop="image" class="img-responsive woocommerce-main-image zoom" title="%s" data-rel="prettyPhoto' . $gallery . '">%s</a>', $image_link, $image_caption, $image ), $post->ID );
+
+					} else {
+
+						echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<img src="%s" alt="%s" />', wc_placeholder_img_src(), __( 'Placeholder', 'woocommerce' ) ), $post->ID );
+
+					}
+				?>
+				<div class="hovercontent">
+					<div class="hoverbutton inlinebutton">
+						<a href="<?php echo wp_get_attachment_url( get_post_thumbnail_id() );?>" data-lightbox="shop_single"><i class="fa fa-search"></i></a>
+						<?php
+
+							/**
+							 * woocommerce_after_shop_loop_item hook
+							 *
+							 * @hooked woocommerce_template_loop_add_to_cart - 10
+							 */
+							do_action( 'woocommerce_after_shop_loop_item' ); 
+
+						?>					
+					</div><!-- end hoverbutton -->
+				</div><!-- end hovereffect -->
+			</div><!-- end hovereffect -->
+		</div>
+		<?php do_action( 'woocommerce_product_thumbnails' ); ?>
+	</div>
+</div>
